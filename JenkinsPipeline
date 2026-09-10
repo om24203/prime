@@ -1,1 +1,83 @@
+pipeline { 
 
+  
+
+    agent any 
+
+  
+
+    stages { 
+
+  
+
+        stage('Checkout') { 
+
+            steps { 
+
+                echo 'Checking out source code from GitHub...' 
+
+  
+
+                git branch: 'main', 
+
+                    url: 'https://github.com/surbhikashyap1692/jenkinstest' 
+
+            } 
+
+        } 
+
+  
+
+        stage('Compile') { 
+
+            steps { 
+
+                echo 'Compiling Java program...' 
+
+  
+
+                sh 'javac HelloJenkins.java' 
+
+            } 
+
+        } 
+
+  
+
+        stage('Run') { 
+
+            steps { 
+
+                echo 'Running Java program...' 
+
+  
+
+                sh 'java HelloJenkins' 
+
+            } 
+
+        } 
+
+    } 
+
+  
+
+    post { 
+
+        success { 
+
+            echo 'BUILD SUCCESSFUL!' 
+
+        } 
+
+  
+
+        failure { 
+
+            echo 'BUILD FAILED!' 
+
+        } 
+
+    } 
+
+} 
